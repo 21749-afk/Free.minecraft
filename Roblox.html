@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D HTML5 Obby</title>
+    <script src="
+      "></script>
+    <script>
+        // Simple Kill Script: Reloads the page if player falls
+        AFRAME.registerComponent('kill-part', {
+            init: function () {
+                this.el.addEventListener('collide', (e) => {
+                    alert("Game Over! Try again.");
+                    window.location.reload();
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene>
+        <!-- Camera and Controls (WASD to move, Mouse to look) -->
+        
+
+        <!-- Lighting -->
+        <a-light type="ambient" color="#fff"></a-light>
+        <a-light type="directional" position="1 1 1" intensity="0.5"></a-light>
+
+        <!-- Environment -->
+        <a-sky color="#87CEEB"></a-sky>
+        
+        <!-- Platform/Spawn -->
+        <a-box position="0 0 -5" rotation="0 0 0" color="#4CC3D9" depth="4" width="4" height="0.5"></a-box>
+        <a-text value="START" position="-1 1 -4" color="white" scale="2 2 2"></a-text>
+
+        <!-- Obby Platforms -->
+        <a-box position="0 0 -12" color="#FFC65D" depth="2" width="2" height="0.5"></a-box>
+        <a-box position="2 0.5 -16" color="#FFC65D" depth="2" width="2" height="0.5"></a-box>
+        <a-box position="-2 1 -20" color="#FFC65D" depth="2" width="2" height="0.5"></a-box>
+        
+        <!-- Red Finish Cube -->
+        <a-box position="0 1.5 -25" color="#EF2D5E" depth="3" width="3" height="3"></a-box>
+        <a-text value="WINNER!" position="-1 3 -24" color="black" scale="3 3 3"></a-text>
+
+        <!-- Kill Zone (Lava) -->
+        <a-plane position="0 -1 -15" rotation="-90 0 0" width="100" height="100" color="red" kill-part></a-plane>
+    </a-scene>
+</body>
+</html>
